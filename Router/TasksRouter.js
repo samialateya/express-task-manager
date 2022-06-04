@@ -19,5 +19,7 @@ router.route('/:id').get((req, res) => tasksController.getTaskById(req, res));
 router.route('/').post((req, res) => tasksController.createTask(req, res));
 //?update a task
 router.route('/:id').put((req, res) => tasksController.updateTask(req, res));
+//?delete a task
+router.route('/:id').delete((req, res) => tasksController.deleteTask(req, res));
 
 module.exports = router;

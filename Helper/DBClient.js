@@ -69,6 +69,19 @@ class DBClient{
 			}
 		});
 	}
+
+	//*delete a record from a table
+	async deleteData(table, where){
+		return new Promise(async (resolve, reject) => {
+			try {
+				const query = `DELETE FROM ${table} ${where}`;
+				const result = await this.#client.query(query);
+				resolve(result);
+			} catch (err) {
+				reject(err);
+			}
+		});
+	}
 }
 
 module.exports = DBClient;

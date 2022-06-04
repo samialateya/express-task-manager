@@ -73,6 +73,18 @@ class TaskModel {
 			throw err;
 		}
 	}
+
+	//*delete a task
+	async delete(taskID) {
+		try {
+			this.#condition = `WHERE id = ${taskID}`;
+			const result = await this.#taskDBClint.deleteData(this.#table, this.#condition);
+			return result;
+		}
+		catch (err) {
+			throw err;
+		}
+	}
 }
 
 module.exports = TaskModel;

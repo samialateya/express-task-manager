@@ -72,6 +72,20 @@ class TasksController{
 			res.status(500).send({'error': err});
 		}
 	}
+
+	//*delete a task
+	async deleteTask(req, res){
+		try{
+			const taskModel = await new TaskModel();
+			const taskID = req.params.id;
+			await taskModel.delete(taskID);
+			res.status(200).json({'message': 'Task deleted successfully'});
+		}
+		catch(err){
+			console.log(err);
+			res.status(500).send({'error': err});
+		}
+	}
 }
 
 module.exports = TasksController;
