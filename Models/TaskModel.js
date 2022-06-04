@@ -1,16 +1,19 @@
+//require the DB client helper to connect and work with the database
 const DBClient = require('../Helper/DBClient');
 
 class TaskModel {
+	//*set the table name
 	#table = 'tasks';
 	#limit;
 	#taskDBClint;
 	#condition;
 
-	//?connect to the database and return the client object
+	//?connect to the database and return the db client object
 	constructor() {
 		return new Promise(async (resolve, reject) => {
 			try {
 				this.#taskDBClint = await (new DBClient());
+				//return current object after waiting for the db client to connect
 				resolve(this);
 			}
 			catch (err) {
