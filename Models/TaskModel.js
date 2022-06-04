@@ -57,6 +57,22 @@ class TaskModel {
 			throw err;
 		}
 	}
+
+	//*update a task
+	async update(taskID, values) {
+		try {
+			//convert task object to string key = value,
+			//and separate each key/value pair with a comma
+			const columns = Object.keys(values).map(key => `${key} = '${values[key]}'`).join(',');
+
+			this.#condition = `WHERE id = ${taskID}`;
+			const result = await this.#taskDBClint.updateData(this.#table, columns, this.#condition);
+			return result;
+		}
+		catch (err) {
+			throw err;
+		}
+	}
 }
 
 module.exports = TaskModel;

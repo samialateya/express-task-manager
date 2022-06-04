@@ -17,5 +17,7 @@ router.route('/').get((req, res) => tasksController.getAllTasks(req, res));
 router.route('/:id').get((req, res) => tasksController.getTaskById(req, res));
 //?create a new task
 router.route('/').post((req, res) => tasksController.createTask(req, res));
+//?update a task
+router.route('/:id').put((req, res) => tasksController.updateTask(req, res));
 
 module.exports = router;

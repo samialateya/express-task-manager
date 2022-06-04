@@ -56,6 +56,19 @@ class DBClient{
 			}
 		});
 	}
+
+	//*update a record in a table
+	async updateData(table, columns, where){
+		return new Promise(async (resolve, reject) => {
+			try {
+				const query = `UPDATE ${table} SET ${columns} ${where}`;
+				const result = await this.#client.query(query);
+				resolve(result);
+			} catch (err) {
+				reject(err);
+			}
+		});
+	}
 }
 
 module.exports = DBClient;

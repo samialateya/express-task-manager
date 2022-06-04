@@ -51,6 +51,27 @@ class TasksController{
 			res.status(500).send({'error': err});
 		}
 	}
+
+	//*update a task
+	async updateTask(req, res){
+		try{
+			const taskModel = await new TaskModel();
+			const taskID = req.params.id;
+			const values = {};
+			req.body.name ? values.name = req.body.name : '';
+			req.body.completed ? values.completed = req.body.completed : '';
+			await taskModel.update(taskID, values);
+			res.status(200).json({'message': 'Task updated successfully'});
+		}
+		catch(err){
+			//?handle empty inputs
+			if (err.code === '42601') {
+				res.status(400).send({ 'error': 'Invalid input' });
+			}
+			console.log(err);
+			res.status(500).send({'error': err});
+		}
+	}
 }
 
 module.exports = TasksController;
