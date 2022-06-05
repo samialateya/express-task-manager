@@ -11,6 +11,9 @@ const tasksRouter = require('./Router/TasksRouter');
 //register the router
 app.use('/tasks', tasksRouter);
 
+//use not found middleware
+app.use(require('./Middleware/NotFound'));
+
 //start the server
 const port = process.env.PORT || 3000
 app.listen(port, () => {
