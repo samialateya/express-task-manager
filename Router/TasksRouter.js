@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+
 //require tasks controller to map routes with the controller methods
 const TasksController = require('../controllers/TasksController');
 
@@ -16,14 +17,14 @@ router.use(express.json());
 const tasksController = new TasksController();
 
 //?get all tasks
-router.route('/').get((req, res) => tasksController.getAllTasks(req, res));
+router.route('/').get(tasksController.getAllTasks);
 //?get a task by id
-router.route('/:id').get((req, res) => tasksController.getTaskById(req, res));
+router.route('/:id').get(tasksController.getTaskById);
 //?create a new task
-router.route('/').post((req, res) => tasksController.createTask(req, res));
+router.route('/').post(tasksController.createTask);
 //?update a task
-router.route('/:id').put((req, res) => tasksController.updateTask(req, res));
+router.route('/:id').put(tasksController.updateTask);
 //?delete a task
-router.route('/:id').delete((req, res) => tasksController.deleteTask(req, res));
+router.route('/:id').delete(tasksController.deleteTask);
 
 module.exports = router;
